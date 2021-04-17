@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  mysqldb_local:
+    image: mysql:8.0
+    container_name: mysql8_box
+    command: mysqld --sql_mode="NO_ENGINE_SUBSTITUTION"
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'initial_db'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'yourpassword'
+      MYSQL_ROOT_PASSWORD: 'yourpassword'
+    network_mode: bridge
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - vollocal:/var/lib/mysql
+
+volumes:
+  vollocal:
